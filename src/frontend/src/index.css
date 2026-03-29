@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    --background: 0.13 0.025 240;
+    --foreground: 0.95 0.01 240;
+    --card: 0.18 0.04 240;
+    --card-foreground: 0.95 0.01 240;
+    --popover: 0.16 0.035 240;
+    --popover-foreground: 0.95 0.01 240;
+    --primary: 0.58 0.15 240;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.72 0.18 55;
+    --secondary-foreground: 0.1 0.02 55;
+    --muted: 0.22 0.05 240;
+    --muted-foreground: 0.65 0.04 240;
+    --accent: 0.72 0.18 55;
+    --accent-foreground: 0.1 0.02 55;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.25 0.05 240;
+    --input: 0.22 0.05 240;
+    --ring: 0.58 0.15 240;
+    --chart-1: 0.58 0.15 240;
+    --chart-2: 0.72 0.18 55;
+    --chart-3: 0.45 0.12 240;
+    --chart-4: 0.85 0.02 240;
+    --chart-5: 0.18 0.04 240;
+    --sidebar: 0.11 0.025 240;
+    --sidebar-foreground: 0.95 0.01 240;
+    --sidebar-primary: 0.58 0.15 240;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.2 0.04 240;
+    --sidebar-accent-foreground: 0.95 0.01 240;
+    --sidebar-border: 0.25 0.05 240;
+    --sidebar-ring: 0.58 0.15 240;
+    /* Site tokens */
+    --bg-base: oklch(0.13 0.025 240);
+    --bg-mid: oklch(0.16 0.035 240);
+    --bg-card: oklch(0.2 0.04 240);
+    --bg-card-hover: oklch(0.23 0.045 240);
+    --steel-blue: oklch(0.58 0.15 240);
+    --steel-blue-light: oklch(0.65 0.16 240);
+    --amber: oklch(0.72 0.18 55);
+    --amber-light: oklch(0.78 0.16 55);
+    --text-primary: oklch(0.95 0.01 240);
+    --text-muted: oklch(0.65 0.04 240);
+    --border-subtle: oklch(0.25 0.05 240);
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  }
+}
+
+/* Dark steel card */
+.steel-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s
+    ease;
+}
+.steel-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: oklch(0.45 0.1 240);
+  transform: translateY(-2px);
+}
+
+/* Dot-grid overlay */
+.dot-grid {
+  background-image: radial-gradient(
+    circle,
+    oklch(0.35 0.07 240 / 0.4) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
